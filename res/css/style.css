@@ -1,5 +1,6 @@
 * {
     font-family: 'Roboto Slab', serif;
+    outline: none;
 }
 
 html, body {
@@ -145,20 +146,23 @@ nav div.avatar-container {
 
 .post .post-author .post-author-info img {
     width: 30px;
+    height: 30px;
     border-radius: 100%;
     object-fit: cover;
-    object-position: top center;
+    object-position: top;
+    margin: 5px;
 }
 
 .post .post-author .post-author-info small {
     position: absolute;
-    top: 5px;
+    top: 10px;
     left: 35px;
 }
 
 .post .post-author .post-author-info + small {
     float: right;
     color: grey;
+    padding: 10px;
 }
 
 .post .post-image img {
