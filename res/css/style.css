@@ -146,6 +146,8 @@ nav div.avatar-container {
 .post .post-author .post-author-info img {
     width: 30px;
     border-radius: 100%;
+    object-fit: cover;
+    object-position: top center;
 }
 
 .post .post-author .post-author-info small {
