@@ -134,24 +134,24 @@ nav div.avatar-container {
     clear: both;
 }
 
-.post .post-author .post-autor-info {
+.post .post-author .post-author-info {
     float: left;
     position: relative;
     width: 50%;
 }
 
-.post .post-author .post-autor-info img {
+.post .post-author .post-author-info img {
     width: 30px;
     border-radius: 100%;
 }
 
-.post .post-author .post-autor-info small {
+.post .post-author .post-author-info small {
     position: absolute;
     top: 5px;
     left: 35px;
 }
 
-.post .post-author .post-autor-info + small {
+.post .post-author .post-author-info + small {
     float: right;
     color: grey;
 }
@@ -181,10 +181,15 @@ nav div.avatar-container {
     background-size: 15px;
     background-repeat: no-repeat;
     background-position: 5px center;
+    background-color: #8a8a8a;
     width: 60px;
     height: 25px;
     padding-left: 23px;
     line-height: 10px;
     text-align: left;
+    border: none;
+}
 
+.like-button.liked {
+    background-color: #01579b;
 }
