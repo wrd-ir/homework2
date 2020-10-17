@@ -85,7 +85,8 @@ nav div img {
     width: 30px;
     margin-left: 15px;
     border-radius: 100%;
-    object-fit: cover;;
+    object-fit: cover;
+    object-position: top center;
 }
 
 nav div.search-container > input {
