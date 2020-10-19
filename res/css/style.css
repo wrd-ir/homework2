@@ -241,5 +241,45 @@ nav div.avatar-container {
     border-top: 1px solid #D3D3D3;
 }
 
+.account {
+    width: 80%;
+    margin: 15px auto;
+    padding: 25px 0;
+    box-shadow: 0 0 15px rgba(38, 50, 56, 0.33);
+    border-radius: 5px;
 }
 
+.account .account-image img {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    /*max-height: 350px;*/
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 50%;
+}
+
+.account .account-title {
+    padding: 10px;
+}
+
+.account .account-title h3 {
+    text-align: center;
+}
+
+.account .account-title ~ .post-actions {
+    padding: 10px;
+}
+
+.follow-button {
+    display:block;
+    margin: 0 auto;
+    background-color: #8a8a8a;
+    text-align: center;
+    border: none;
+}
+
+.follow-button.followed {
+    background-color: #0277bd;
+}

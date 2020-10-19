@@ -21,56 +21,85 @@ $(function () {
             alert('Error loading user info')
         });
 
-
-    $.get('https://private-anon-debd153d40-wad20postit.apiary-mock.com/posts', function (response) {
-        for (post of response) {
-            let div = $('<div class="post">')
-            let author = $('<div class="post-author">').append(
-                $('<span class="post-author-info">').append(
-                    $('<img>').attr('src', post.author.avatar)
-                ).append(
-                    $('<small>').text(post.author.firstname + ' ' + post.author.lastname)
-                )
-            ).append(
-                $('<small>').text(post.createTime)
-            )
-            let image = $('<div class="post-image">')
-            if (post.media) {
-                if (post.media.type == 'image') {
-                    image.append(
-                        $('<img>').attr('src', post.media.url))
-                }
-                if (post.media.type == 'video') {
-                    video = $('<video controls>').append(
-                        $('<source type="video/mp4">').attr('src', post.media.url)
+    if (window.location.href.indexOf("index.html") != -1)
+        $.get('https://private-anon-debd153d40-wad20postit.apiary-mock.com/posts', function (response) {
+            for (post of response) {
+                let div = $('<div class="post">')
+                let author = $('<div class="post-author">').append(
+                    $('<span class="post-author-info">').append(
+                        $('<img>').attr('src', post.author.avatar)
+                    ).append(
+                        $('<small>').text(post.author.firstname + ' ' + post.author.lastname)
                     )
-                    image.append(video)
+                ).append(
+                    $('<small>').text(post.createTime)
+                )
+                let image = $('<div class="post-image">')
+                if (post.media) {
+                    if (post.media.type == 'image') {
+                        image.append(
+                            $('<img>').attr('src', post.media.url))
+                    }
+                    if (post.media.type == 'video') {
+                        video = $('<video controls>').append(
+                            $('<source type="video/mp4">').attr('src', post.media.url)
+                        )
+                        image.append(video)
+                    }
                 }
-            }
             
-            let title = $('<div class="post-title">').append(
-                $('<h3>').text(post.text)
-            )
-            let actions = $('<div class="post-actions">').append(
-                $('<button type="button" name="like" class="like-button">').text(post.likes)
-            )
-            div.append(author)
-            div.append(image)
-            div.append(title)
-            div.append(actions)
-            //author:firstname, lastname, avatar
-            //createTime
-            //id
-            //likes
-            //media:type, url
-            //text
-            $('.main-container').append(div)
-        }
-    });
+                let title = $('<div class="post-title">').append(
+                    $('<h3>').text(post.text)
+                )
+                let actions = $('<div class="post-actions">').append(
+                    $('<button type="button" name="like" class="like-button">').text(post.likes)
+                )
+                div.append(author)
+                div.append(image)
+                div.append(title)
+                div.append(actions)
+                //author:firstname, lastname, avatar
+                //createTime
+                //id
+                //likes
+                //media:type, url
+                //text
+                $('.main-container').append(div)
+            }
+        });
+    if (window.location.href.indexOf("browse.html") != -1)
+        $.get('https://private-anon-debd153d40-wad20postit.apiary-mock.com/profiles', function (response) {
+            for (post of response) {
+                let div = $('<div class="account">')
+                let image = $('<div class="account-image">')
+                image.append(
+                    $('<img>').attr('src', post.avatar))
+
+                let title = $('<div class="account-title">').append(
+                    $('<h3>').text(post.firstname + ' ' + post.lastname)
+                )
+                let actions = $('<div class="account-actions">').append(
+                    $('<button type="button" name="follow" class="follow-button">').text('Followed')
+                )
+                div.append(image)
+                div.append(title)
+                div.append(actions)
+                //firstname
+                //lastname
+                //avatar
+                $('.main-container').append(div)
+            }
+        });
+
 });
 
 $(document).on("click", "button[name='like']", function (event) {
     $(this).toggleClass("liked");
+});
+
+$(document).on("click", "button[name='follow']", function (event) {
+    $(this).toggleClass("followed");
+    $(this).text(($(this).text() == 'Followed') ? 'Follow' : 'Followed').fadeIn();
 });
 
 function displayUserInfo(user) {
