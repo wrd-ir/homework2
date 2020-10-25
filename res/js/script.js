@@ -1,18 +1,4 @@
 $(function () {
-    $(".avatar").click(function() {
-        var X = $(this).attr('id');
-        if (X == 1) {
-            $(".avatar-submenu").hide();
-            $(this).attr('id', '0');
-        }
-        else
-        {
-            $(".avatar-submenu").show();
-            $(this).attr('id', '1');
-    }
-
-    });
-
     loadUserInfo()
         .then(function (user) {
             displayUserInfo(user)
@@ -21,7 +7,11 @@ $(function () {
             alert('Error loading user info')
         });
 
-    if (window.location.href.indexOf("index.html") != -1)
+    $(".avatar").click(function () {
+        $(".avatar-submenu").toggle();
+    });
+
+    if ($(location).attr('pathname') === '/index.html' || $(location).attr('pathname') === '/')
         $.get('https://private-anon-debd153d40-wad20postit.apiary-mock.com/posts', function (response) {
             for (post of response) {
                 let div = $('<div class="post">')
@@ -59,15 +49,11 @@ $(function () {
                 div.append(title)
                 div.append(actions)
                 //author:firstname, lastname, avatar
-                //createTime
-                //id
-                //likes
-                //media:type, url
-                //text
+                //createTime //id //likes //media:type, url //text
                 $('.main-container').append(div)
             }
         });
-    if (window.location.href.indexOf("browse.html") != -1)
+    if ($(location).attr('pathname').indexOf("browse.html") != -1)
         $.get('https://private-anon-debd153d40-wad20postit.apiary-mock.com/profiles', function (response) {
             for (post of response) {
                 let div = $('<div class="account">')
@@ -84,13 +70,17 @@ $(function () {
                 div.append(image)
                 div.append(title)
                 div.append(actions)
-                //firstname
-                //lastname
-                //avatar
+                //firstname //lastname //avatar
                 $('.main-container').append(div)
             }
         });
 
+});
+
+$(document).on('click', function (event) {
+    if (!$(event.target).closest('.avatar').length) {
+        $(".avatar-submenu").hide();
+    }
 });
 
 $(document).on("click", "button[name='like']", function (event) {
